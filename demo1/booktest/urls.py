@@ -6,3 +6,9 @@ urlpatterns=[
     url(r'^detail/(\d+)/$',views.detail),
     url(r'^index/$', views.index),
 ]
+
+
+
+
+
+
