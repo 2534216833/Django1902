@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>列表</title>
+</head>
+<body>
+    <H2>列表页</H2>
+    <a href="/booktest/index/">返回主页</a>
+    {% if allbook %}
+        <ul>
+        {% for book in allbook %}
+            <li><a href="/booktest/detail/{{book.id}}">{{book.title}}</a></li>
+        {% empty %}
+            没有书籍信息
+        {% endfor %}
+
+        </ul>
+
+    {% else %}
+
+    {% endif %}
+
+</body>
+</html>
