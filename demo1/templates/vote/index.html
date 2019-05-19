@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+
+</head>
+<body>
+
+
+<h2>  这是首页 不信拉鸡巴倒 </h2>
+{% if allvote %}
+        <ul>
+        {% for vote in allvote %}
+            <li>
+            <a href="{% url 'vote:votingpage' vote.id %}">{{vote.votingcontent}}
+            </a>
+            </li>
+        {% empty %}
+            没有书籍信息
+        {% endfor %}
+
+        </ul>
+
+    {% else %}
+
+    {% endif %}
+
+
+</body>
+</html>

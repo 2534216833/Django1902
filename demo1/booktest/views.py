@@ -12,6 +12,7 @@ def index(request):
     result=template.render(contex)
     return HttpResponse(result)
 
+
 def list(request):
 
     allbook=BookInfo.objects.all()
@@ -19,6 +20,7 @@ def list(request):
     temp1=loader.get_template('booktest/list.html')
     result=temp1.render({ 'allbook':allbook })
     return HttpResponse(result)
+
 def detail(request,id):
     book=None
     try:
@@ -29,6 +31,7 @@ def detail(request,id):
     temp2=loader.get_template('booktest/detail.html')
     result=temp2.render({ 'book':book })
     return HttpResponse(result)
+
 def deletebook(request,id):
     # return HttpResponse("成功")
     BookInfo.objects.get(pk=id).delete()
@@ -41,8 +44,6 @@ def deletehero(request,id):
     bookid=hero.book.id
     hero.delete()
     return HttpResponseRedirect("/booktest/detail/%s/"%(bookid,))
-
-
 
 # 添加人物
 def addhero(request,id):
@@ -62,29 +63,36 @@ def addhero(request,id):
 
         return HttpResponseRedirect("/booktest/detail/%s"%(id,))
 
-
-
 # 添加书籍
-
 def addbook(request):
     if request.method == "GET":
         return render(request, "booktest/addbook.html")
+    elif request.method == "POST":
+        addbook=BookInfo()
+        title=request.POST['bookname']
+        addbook.title=title
+
+        pub_date=request.POST['booktime']
+        addbook.pub_date=pub_date
+
+        addbook.save()
+        return HttpResponseRedirect("/booktest/list")
+
+
+
+def uphero(request,id):
+    updatehero = HeroInfo.objects.get(pk=id)
+    if request.method == "GET":
+        # return HttpResponse("ok")
+        return render(request, "booktest/uphero.html",{'hero':updatehero})
 
     elif request.method == "POST":
 
-        addbook=BookInfo()
-        title=request.POST['bookname']
-        print(title,'title')
-        addbook.title=title
-        pub_date=request.POST['booktime']
-        print(pub_date,)
-        addbook.pub_date=pub_date
-
-
-
-        addbook.save()
-
-        return HttpResponseRedirect("/booktest/list")
+        updatehero.name=request.POST['username']
+        updatehero.gender=request.POST['sex']
+        updatehero.skill=request.POST['skill']
+        updatehero.save()
+        return HttpResponseRedirect("/booktest/detail/%s"%(updatehero.book.id,))
 
 
 
