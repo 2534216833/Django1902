@@ -21,8 +21,8 @@ def VotingPage(request,id):
     voting = VoteContent.objects.get(pk=id)
 
     if request.method == "GET":
-        temp2 = loader.get_template('vote/votingpage.html')
-        result = temp2.render({'voting': voting})
+        temp = loader.get_template('vote/votingpage.html')
+        result = temp.render({'voting': voting})
         return render(request, "vote/votingpage.html", {'voting': voting},)
 
     elif request.method == "POST":
@@ -41,13 +41,12 @@ def VotingPage(request,id):
             return HttpResponseRedirect("/vote/votingresult/%s" % (t1,))
 
 
-
 def VotingResult(request,id):
-    pass
-    result=Vote.objects.get(pk=id)
-    print(result)
-    return HttpResponse("这是投票结果页")
 
+    Vresult = Vote.objects.get(pk=id)
+    temp=loader.get_template('vote/votingresult.html')
+    result=temp.render({ 'Vresult':Vresult })
+    return HttpResponse(result)
 
 
 

@@ -13,11 +13,9 @@
     <ul>
         {% for hero in book.heroinfo_set.all %}
 
-
            <li>{{ hero.name }}---{{ hero.gender }} -- {{ hero.skill }}
                <a href="{% url 'booktest:deletehero' hero.id %}">删除</a>
-
-
+           </li>
 
         {% empty %}
             <li></li>
