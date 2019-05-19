@@ -43,9 +43,12 @@ def VotingPage(request,id):
 
 def VotingResult(request,id):
 
+
+    # return HttpResponse("list列表页")
     Vresult = Vote.objects.get(pk=id)
     temp=loader.get_template('vote/votingresult.html')
-    result=temp.render({ 'Vresult':Vresult })
+    result=temp.render({ 'Vresult':Vresult})
+
     return HttpResponse(result)
 
 

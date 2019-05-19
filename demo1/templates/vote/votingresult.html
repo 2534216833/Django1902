@@ -5,14 +5,19 @@
     <title>投票结果界面</title>
 </head>
 <body>
+
 <h2>  投票结果</h2>
 
-<p> {{voting.votingcontent }}</p>
 
-    <ul>
+
+
         <li>{{ Vresult.OptionNo1 }}--------{{ Vresult.Poll_1 }}票<br> <br> </li>
 
         <li>{{ Vresult.OptionNo2 }}--------{{ Vresult.Poll_2 }}票 </li>
     </ul>
+
+
+  <a href="{% url 'vote:index' %}">返回首页</a>
+
 </body>
 </html>
