@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>详情</title>
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+<body  >
+<div class="a_a">
+       <H2>详情页</H2>
+    {% if book %}
+    <h3>{{ book.title }}</h3>
+    <ul>
+        {% for hero in book.heroinfo_set.all %}
+
+           <li>{{ hero.name }}---{{ hero.gender }} -- {{ hero.skill }}
+               <a href="{% url 'booktest:deletehero' hero.id %}">删除</a>
+           </li>
+
+        {% empty %}
+            <li></li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    没有书籍信息
+    {% endif %}
+
+</div>
+
+
+</body>
+ <a href="{% url 'booktest:list'%}" >返回列表页</a>
+ <a href="{% url 'booktest:addhero' book.id  %}">添加角色</a>
+
+</html>

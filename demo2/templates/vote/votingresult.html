@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>投票结果界面</title>
+</head>
+<body>
+
+<h2>  投票结果</h2>
+
+    {% for vote in allvote %}
+        {% if  vote.id  ==  Vresult.vo_title_id%}
+            <p>{{ vote.votingcontent }}</p>
+        {% else %}
+        {% endif %}
+
+    {% empty %}
+
+    {% endfor %}
+
+        <li>{{ Vresult.OptionNo1 }}--------{{ Vresult.Poll_1 }}票<br> <br> </li>
+
+        <li>{{ Vresult.OptionNo2 }}--------{{ Vresult.Poll_2 }}票 </li>
+    </ul>
+
+  <a href="{% url 'vote:index' %}">返回首页</a>
+
+</body>
+</html>
