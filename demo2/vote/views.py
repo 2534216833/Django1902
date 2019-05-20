@@ -1,5 +1,5 @@
 
-from django.shortcuts import render
+from django.shortcuts import render,redirect,reverse
 from django.http import HttpResponse,HttpResponseRedirect
 from django.template import loader
 from  .models import VoteContent,Vote
@@ -54,7 +54,16 @@ def VotingResult(request,id):
     return HttpResponse(result)
 
 
-
+def login(request):
+    if request.method == "GET":
+        return render(request,'vote/login.html')
+    else:
+        username=request.POST.get('username')
+        print(username)
+        if username=="aaa":
+            res=redirect(reverse('vote:index'))
+            res.set_cookie('username',username)
+    return render(request, 'vote/login.html')
 
 
 

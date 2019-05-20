@@ -29,6 +29,11 @@ class Vote(models.Model):
     vo_title = models.ForeignKey('VoteContent', on_delete=models.CASCADE, verbose_name='投票名')
 
 
+class UserName(models.Model):
+
+    name=models.CharField(max_length=30,verbose_name="用户账号")
+
+
 
 
 

@@ -8,8 +8,10 @@
 
 <h2>  投票结果</h2>
 
+
+
     {% for vote in allvote %}
-        {% if  vote.id  ==  Vresult.vo_title_id%}
+        {% if  vote.id  ==  Vresult.vo_title_id %}
             <p>{{ vote.votingcontent }}</p>
         {% else %}
         {% endif %}
