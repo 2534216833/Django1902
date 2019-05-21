@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'e#xync7aa+s-bzm06u1=-0n5y_x#59v#k9g8-15s)l*u#r$yxs'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*',]
 
@@ -127,3 +127,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS=[os.path.join(BASE_DIR,'static')]
+
+
+
+#session配置为redis数据库
+SESSION_ENGINE='redis_sessions.session'
+SESSION_REDIS_HOST='localhost'
+SESSION_REDIS_PORT=6379
+SESSION_REDIS_PASSWORD=''
+SESSION_REDIS_PREFIX='session'

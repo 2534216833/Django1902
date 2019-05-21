@@ -9,25 +9,18 @@
 </head>
 <body>
 
-
+    当前用户：{{ request.user }}<br> <a href="{% url 'vote:logout' %}">登出</a>
+    <div class="container">
 <h2>  首页 </h2>
-{% if allvote %}
-        <ul>
-        {% for vote in allvote %}
-            <li>
-            <a href="{% url 'vote:votingpage' vote.id %}">{{vote.votingcontent}}
-            </a>
-            </li>
-        {% empty %}
-
-        {% endfor %}
-
-        </ul>
-
-    {% else %}
-
-    {% endif %}
-
+    <ul>
+    {% for vote in allvote %}
+        <li>
+        <a href="{% url 'vote:votingpage' vote.id %}">{{vote.votingcontent}}
+        </a>
+        </li>
+    {% empty %}
+    {% endfor %}
+    </ul>
 
 </body>
 </html>

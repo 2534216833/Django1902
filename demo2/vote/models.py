@@ -1,4 +1,5 @@
 from django.db import models
+from  django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -7,7 +8,6 @@ class VoteContent(models.Model):
 
     #投票内容
     votingcontent=models.CharField(max_length=30,verbose_name='投票内容')
-
 
     def __str__(self):
         return self.votingcontent
@@ -29,9 +29,11 @@ class Vote(models.Model):
     vo_title = models.ForeignKey('VoteContent', on_delete=models.CASCADE, verbose_name='投票名')
 
 
-class UserName(models.Model):
-
-    name=models.CharField(max_length=30,verbose_name="用户账号")
+class MyUser(User):
+    url = models.URLField(blank=True, null=True, default="http://www.baidu.com")
+    class Meta():
+        verbose_name = "用户"
+        verbose_name_plural = verbose_name
 
 
 
