@@ -15,3 +15,34 @@ def myslice(value,length):
 @register.simple_tag(name='getcategorys')
 def getcategorys():
     return CateGory.objects.all()
+
+
+@register.simple_tag
+def getlatestarticles(num = 3):
+    return Article.objects.all().order_by("-creat_time")[:num]
+
+@register.simple_tag
+def getarchives(num = 3):
+    result =  Article.objects.dates("creat_time",'month',order="DESC")[:num]
+    return result
+
+@register.simple_tag
+def gettags():
+    return Tag.objects.all()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
