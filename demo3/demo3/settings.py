@@ -140,3 +140,21 @@ EMAIL_PORT = 25 #发件箱的SMTP服务器端口
 EMAIL_HOST_USER = '2534216833@qq.com'
 EMAIL_HOST_PASSWORD = 'ab19971221'
 DEFAULTFROMEMAIL ='luck <2534216833>'
+
+
+
+
+HAYSTACK_CONNECTIONS = {
+'default': {
+'ENGINE': 'blogs.whoosh_cn_backend.WhooshEngine',
+'PATH': os.path.join(BASE_DIR, 'whoosh_index'),
+}
+}
+
+
+
+# 配置搜索结果分页
+HAYSTACK_SEARCH_RESULTS_PER_PAGE = 10
+
+# 配置索引实时更新
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'

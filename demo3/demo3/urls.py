@@ -21,7 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     url('blogs/', include('blogs.urls', namespace='blogs')),
-
+    url(r'search/', include('haystack.urls')),
     url('comment/',include('comment.urls',namespace='comment')),
 
 
