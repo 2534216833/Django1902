@@ -6,7 +6,7 @@ import markdown
 from comment.forms import CommentForm
 from django.views.generic import View
 from .forms import ContactForm
-
+from django.core.mail import  send_mail, send_mass_mail,settings
 
 # Create your views here.
 def index(request):
@@ -98,6 +98,9 @@ class Contacts(View):
         cf = ContactForm()
         return render(request, 'contact.html',locals())
     def post(self,request):
+        from django.conf import settings
+        send_mail("xxxxxxx" ,"yyyyyyyyyy",settings.DEFAULTFROMEMAIL,["2534216833@qq.com","2953957576@qq.com"])
+
         cf = ContactForm(request.POST)
         cf.save()
         cf = ContactForm()
