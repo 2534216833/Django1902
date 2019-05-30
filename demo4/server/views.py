@@ -14,6 +14,7 @@ from django.views.decorators.cache import cache_page
 
 
 def index(request):
+    article = Article.objects.all()
     img =  Picture.objects.all()
     title    = Title.objects.all()
     articles = Brief.objects.all()
@@ -24,9 +25,10 @@ def index(request):
         email = request.POST["email"]
         news = request.POST["news"]
         strA = "姓名：%s ，电话：%s，邮箱：%s，内容：%s"%(username,phone,email,news)
-        send_mail("信息", "%s"%strA, settings.DEFAULT_FROM_EMAIL,
-                  ["2953957576@qq.com", "2534216833@qq.com"])
-        info='成功'
+
+        send_mail("信息", "%s"%strA, settings.DEFAULT_FROM_EMAIL,["2953957576@qq.com", "2534216833@qq.com"])
+
+
         return render(request, 'index.html',locals())
 
 
@@ -89,3 +91,27 @@ def tag(request,id):
     page = paginator.get_page(pagenum)
     page.parms = "/tag/%s/"%(id,)
     return render(request, 'blog.html', {"page": page})
+
+# 画廊图片
+def gallery(request):
+    picture = Picture.objects.all()
+    return render(request,'gallery.html',locals())
+
+# 关于我们页面
+def about_us(request):
+
+    staff = Staffimage.objects.all()#获取员工的头像和内容
+
+    aboutus = get_object_or_404(AboutUs)
+
+    return render(request,'about_us.html',locals())
+
+#联系我们界面
+def contacts(request):
+    all =  get_object_or_404(Contacts)
+
+
+    return render(request,'contacts.html',locals())
+
+
+

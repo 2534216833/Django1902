@@ -34,12 +34,12 @@
 					</button>
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
-				<ul class="nav navbar-nav menu">
-					<li class="dropdown"><a href="{% url 'server:index' %}">主页</a></li>
+									<ul class="nav navbar-nav menu">
+						<li class="dropdown"><a href="{% url 'server:index' %}">主页</a></li>
 						<li><a href="{% url 'server:blog' %}">博客</a></li>
-						<li><a href="gallery.html">画廊</a></li>
-						<li><a href="about_us.html">关于我们</a></li>
-						<li><a href="contacts.html">联系我们</a></li>
+						<li><a href="{% url 'server:gallery' %}">画廊</a></li>
+						<li><a href="{% url 'server:about_us' %}">关于我们</a></li>
+						<li><a href="{% url 'server:contacts' %}">联系我们</a></li>
 					</ul>
 				</div>
 			</nav>
@@ -47,41 +47,33 @@
 		<!-- header -->
 		<div class="breadcrumbs-wrapper">
 			<ul class="breadcrumbs">
-				<li><a href="index.html" class="home"><i class="fa fa-home" aria-hidden="true"></i></a></li>
-				<li><a>Gallery</a></li>
+				<li><a href="{% url 'server:index' %}" class="home"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+				<li><a>主页</a></li>
 			</ul>
 		</div>
 		<!-- breadcrumbs-wrapper -->
 		<section class="content-wrapper">
 			<div class="container">
 				<div class="title">
-					<h1>Gallery</h1>
+					<h1>画廊</h1>
 				</div>
 				<div class="row">
-					<div class="col-md-3 gallery-item">
-						<a href="/static/img/img1.jpg" data-lightbox="example-set"><img src="/static/img/img1.jpg" alt=""></a>
-					</div>
-					<div class="col-md-3 gallery-item">
-						<a href="/static/img/img2.jpg" data-lightbox="example-set"><img src="/static/img/img2.jpg" alt=""></a>
-					</div>
-					<div class="col-md-3 gallery-item">
-						<a href="/static/img/img3.jpg" data-lightbox="example-set"><img src="/static/img/img3.jpg" alt=""></a>
-					</div>
-					<div class="col-md-3 gallery-item">
-						<a href="/static/img/img4.jpg" data-lightbox="example-set"><img src="/static/img/img4.jpg" alt=""></a>
-					</div>
-					<div class="col-md-3 gallery-item">
-						<a href="/static/img/img5.jpg" data-lightbox="example-set"><img src="/static/img/img5.jpg" alt=""></a>
-					</div>
-					<div class="col-md-3 gallery-item">
-						<a href="/static/img/img6.jpg" data-lightbox="example-set"><img src="/static/img/img6.jpg" alt=""></a>
-					</div>
-					<div class="col-md-3 gallery-item">
-						<a href="/static/img/img7.jpg" data-lightbox="example-set"><img src="/static/img/img7.jpg" alt=""></a>
-					</div>
-					<div class="col-md-3 gallery-item">
-						<a href="/static/img/img8.jpg" data-lightbox="example-set"><img src="/static/img/img8.jpg" alt=""></a>
-					</div>
+
+
+			{% for r in picture  %}
+				 <div class="col-md-3 gallery-item">
+					<a href="/static/media/{{ r.img }}" data-lightbox="example-set"><img src="/static/media/{{ r.img }}" alt=""></a>
+				</div>
+			{% empty %}
+
+			{% endfor %}
+
+
+
+
+
+
+
 				</div>
 			</div>
 		</section>
@@ -90,7 +82,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-4">
-						<a href="index.html" class="logo">Matsumari</a>
+						<a href="" class="logo">Matsumari</a>
 						<p>Etiam dictum purus et leo laoreet, vel congue diam pulvinar. Suspendisse elementum dictum lacus id ultricies. In hac habitasse platea dictumst</p>
 						<div class="copy">Copyright &copy; 2017.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></div>
 					</div>

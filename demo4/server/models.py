@@ -90,15 +90,6 @@ class Article(models.Model):
 
 
 
-# # 博客图片
-# class Blogimg(models.ManyToOneRel):
-#     #上传图片
-#     img = models.ImageField(upload_to='blogimg',verbose_name='博客图片')
-#     blogimg_id = models.ForeignKey(Staff,on_delete=models.CASCADE)
-#
-#     class Meta():
-#         verbose_name = '博客图片'
-#         verbose_name_plural = verbose_name
 
 
 
@@ -162,4 +153,19 @@ class Staffimage(models.Model):
 
     class Meta():
         verbose_name = "员工头像"
+        verbose_name_plural = verbose_name
+
+
+#首页第一个内容介绍表 需要标题和内容
+class AboutUs(models.Model):
+
+    title = models.CharField(max_length=50,verbose_name='标题')
+
+    body = models.TextField(verbose_name='内容')
+
+    def __str__(self):
+        return self.title
+
+    class Meta():
+        verbose_name="关于我们"
         verbose_name_plural = verbose_name

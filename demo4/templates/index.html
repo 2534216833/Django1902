@@ -21,7 +21,7 @@
 	<body class="index-page">
 		<div id="page-preloader"><span class="spinner"></span></div>
 		<header id="header" class="clear">
-			<a href="index.html" class="logo">Matsumari</a>
+			<a href="" class="logo">Matsumari</a>
 			<div class="header-right">
 				<div class="header-search">
 					<i class="fa fa-search" aria-hidden="true"></i>
@@ -40,9 +40,9 @@
 					<ul class="nav navbar-nav menu">
 						<li class="dropdown"><a href="{% url 'server:index' %}">主页</a></li>
 						<li><a href="{% url 'server:blog' %}">博客</a></li>
-						<li><a href="gallery.html">画廊</a></li>
-						<li><a href="about_us.html">关于我们</a></li>
-						<li><a href="contacts.html">联系我们</a></li>
+						<li><a href="{% url 'server:gallery' %}">画廊</a></li>
+						<li><a href="{% url 'server:about_us' %}">关于我们</a></li>
+						<li><a href="{% url 'server:contacts' %}">联系我们</a></li>
 					</ul>
 				</div>
 			</nav>
@@ -114,6 +114,7 @@
 			</div>
 		</section>
 
+
 		<section id="team">
 			<div class="container">
 				<h2>员工</h2>
@@ -147,68 +148,48 @@
 			<div class="container">
 				<h2>最新日志</h2>
 				<div class="row">
+
+			{% for r in article  %}
+		        {% if forloop.counter <= 3 %}
+
 					<article class="col-md-4 blog-item scroll-animation" data-animation="fadeInLeft" data-animation-delay="0s">
-						<div class="img">
-							<img src="/static/img/img12.jpg" alt="">
-						</div>
 						<div class="blog-text">
-							<a href="blog_inner.html">
-								<h5>Praesent malesuada vehicula ipsum, pharetra blandit velit porta bibendum.</h5>
+							<a href="{% url 'server:detail' r.id %}">
+								<h5>{{ r.title }}</h5>
 							</a>
-							<p>Donec posuere nisl sit amet sollicitudin fermentum. Nunc venenatis felis id massa varius</p>
-							<a href="blog_inner.html" class="read-more">Read more</a>
+							<p> {{ r.body|myslice:20 }}。。。 </p>
+							<a href="{% url 'server:detail' r.id %}" class="read-more">阅读</a>
 						</div>
 					</article>
-					<article class="col-md-4 blog-item scroll-animation" data-animation="fadeInUp" data-animation-delay="0s">
-						<div class="img">
-							<img src="/static/img/img13.jpg" alt="">
-						</div>
-						<div class="blog-text">
-							<a href="blog_inner.html">
-								<h5>Cras bibendum nisl dui, eget consequat elit efficitur id. Vivamus varius convallis justo</h5>
-							</a>
-							<p>Donec posuere nisl sit amet sollicitudin fermentum. Nunc venenatis felis id massa varius</p>
-							<a href="blog_inner.html" class="read-more">Read more</a>
-						</div>
-					</article>
-					<article class="col-md-4 blog-item scroll-animation" data-animation="fadeInRight" data-animation-delay="0s">
-						<div class="img">
-							<img src="/static/img/img14.jpg" alt="">
-						</div>
-						<div class="blog-text">
-							<a href="blog_inner.html">
-								<h5>Nunc et orci pharetra, dignissim mauris vel, fermentum leo</h5>
-							</a>
-							<p>Donec posuere nisl sit amet sollicitudin fermentum. Nunc venenatis felis id massa varius</p>
-							<a href="blog_inner.html" class="read-more">Read more</a>
-						</div>
-					</article>
+
+		        {% endif %}
+		{% empty %}
+
+		{% endfor %}
+
+
 				</div>
 			</div>
 		</section>
 		<!-- blog -->
+
+		{% for r in article  %}
+		        {% if forloop.counter <= 1 %}
 		<section class="index-image">
 			<div class="img-left img1"></div>
 			<div class="information-right scroll-animation" data-animation="fadeInRight" data-animation-delay="0s">
-				<h3>Where does it come from?</h3>
-				<p>Quisque vulputate facilisis quam, a fringilla purus varius at. Aliquam ut sodales quam, imperdiet condimentum elit. Fusce ac pharetra augue. Pellentesque a nisl condimentum, luctus ligula commodo, feugiat diam.</p>
-				<a href="blog_inner.html" class="read-more">read more</a>
+				<h3>是否需要了解？</h3>
+				<p> {{ r.title }} </p>
+				<a href="{% url 'server:detail' r.id %}" class="read-more">点击阅读</a>
 			</div>
 		</section>
-		{% for r in   %}
-		        
+
+		        {% endif %}
 		{% empty %}
-		        
+
 		{% endfor %}
 
-		<section class="index-image index-image-right">
-			<div class="img-left img2"></div>
-			<div class="information-right scroll-animation" data-animation="fadeInLeft" data-animation-delay="0s">
-				<h3>Where does it come from?</h3>
-				<p>Quisque vulputate facilisis quam, a fringilla purus varius at. Aliquam ut sodales quam, imperdiet condimentum elit. Fusce ac pharetra augue. Pellentesque a nisl condimentum, luctus ligula commodo, feugiat diam.</p>
-				<a href="blog_inner.html" class="read-more">read more</a>
-			</div>
-		</section>
+
 		
 		<div id="partners" class="scroll-animation" data-animation="fadeInUp" data-animation-delay="0s">
 			<div class="container">
@@ -241,25 +222,36 @@
 					<form action="{% url 'server:index' %}" method="post">
 						{% csrf_token %}
 						<div class="row">
+
 						<div class="col-md-6">
+
 							<div class="input-block name-form">
 								<input type="text" name="username" placeholder="名字">
 							</div>
+
 							<div class="input-block phone-form">
 								<input type="text" name="phone" placeholder="电话">
 							</div>
+
 							<div class="input-block email-form">
 								<input type="text" name="email"  placeholder="邮箱">
 							</div>
+
 						</div>
+
+
+
 						<div class="col-md-6">
 							<div class="input-block message-form">
 								<textarea  name="news" placeholder="消息"></textarea>
 							</div>
 						</div>
+
+
 						<input type="submit" value='发送'>{{ info }}
 					</div>
-				</form>
+
+					</form>
 
 				</div>
 			</div>
@@ -271,7 +263,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-4">
-						<a href="index.html" class="logo">Matsumari</a>
+						<a href="" class="logo">Matsumari</a>
 						<p>Etiam dictum purus et leo laoreet, vel congue diam pulvinar. Suspendisse elementum dictum lacus id ultricies. In hac habitasse platea dictumst</p>
 						<div class="copy">Copyright &copy; 2017.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></div>
 					</div>

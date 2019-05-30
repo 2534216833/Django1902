@@ -1432,7 +1432,6 @@ a.person-name{
     letter-spacing: 1px;
 }
 .map{
-	background: url(../img/map.jpg) no-repeat center center;
     height: 400px;
     border: 10px solid #fff;
     box-shadow: 0px 0px 5px #ddd;
