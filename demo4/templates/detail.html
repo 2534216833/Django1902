@@ -47,8 +47,8 @@
 		<!-- header -->
 		<div class="breadcrumbs-wrapper">
 			<ul class="breadcrumbs">
-				<li><a href="index.html" class="home"><i class="fa fa-home" aria-hidden="true"></i></a></li>
-				<li><a>About us</a></li>
+				<li><a href="{% url 'server:index' %}" class="home"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+				<li><a>主页</a></li>
 			</ul>
 		</div>
 		<!-- breadcrumbs-wrapper -->
@@ -62,37 +62,39 @@
 			</div>
 		</section>
 
-		<footer id="footer">
+					<footer id="footer">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-4">
-						<a href="index.html" class="logo">Matsumari</a>
+						<a href="" class="logo">Matsumari</a>
 						<p>Etiam dictum purus et leo laoreet, vel congue diam pulvinar. Suspendisse elementum dictum lacus id ultricies. In hac habitasse platea dictumst</p>
-						<div class="copy">Copyright &copy; 2017.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></div>
+
 					</div>
 					<div class="col-md-3">
-						<h6>Latest news</h6>
+						<h6>最新消息</h6>
 						<div class="news-footer">
-							<a href="blog_inner.html">Praesent ullamcorper sodales</a>
+							<a href="#">.............</a>
 							<div class="date">14.11.2016</div>
 						</div>
 						<div class="news-footer">
-							<a href="blog_inner.html">Fusce sollicitudin felis vel</a>
+							<a href="#">.............</a>
 							<div class="date">14.11.2016</div>
 						</div>
 						<div class="news-footer">
-							<a href="blog_inner.html">Phasellus vitae dictum urna</a>
+							<a href="#">.............</a>
 							<div class="date">14.11.2016</div>
 						</div>
 					</div>
 					<div class="col-md-2">
 						<h6>Best Posts</h6>
 						<ul class="footer-menu">
-							<li><a href="about_us.html">About us</a></li>
-							<li><a href="">Sitemap</a></li>
-							<li><a href="contacts.html">Contacts</a></li>
-							<li><a href="blog.html">Blog</a></li>
-							<li><a href="gallery.html">Gallery</a></li>
+						<li><a href="{% url 'server:index' %}">主页</a></li>
+						<li><a href="{% url 'server:blog' %}">博客</a></li>
+						<li><a href="{% url 'server:gallery' %}">画廊</a></li>
+						<li><a href="{% url 'server:about_us' %}">关于我们</a></li>
+						<li><a href="{% url 'server:contacts' %}">联系我们</a></li>
+
+
 						</ul>
 					</div>
 					<div class="col-md-3">
@@ -102,6 +104,7 @@
 					</div>
 				</div>
 				<ul class="social">
+
 					<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
 					<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
 					<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>

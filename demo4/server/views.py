@@ -109,8 +109,6 @@ def about_us(request):
 #联系我们界面
 def contacts(request):
     all =  get_object_or_404(Contacts)
-
-
     return render(request,'contacts.html',locals())
 
 
