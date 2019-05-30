@@ -38,11 +38,11 @@
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav menu">
-						<li class="dropdown"><a href="index.html">Home</a></li>
-						<li><a href="blog.html">Blog</a></li>
-						<li><a href="gallery.html">Gallery</a></li>
-						<li><a href="about_us.html">About Us</a></li>
-						<li><a href="contacts.html">Contacts</a></li>
+						<li class="dropdown"><a href="{% url 'server:index' %}">主页</a></li>
+						<li><a href="{% url 'server:blog' %}">博客</a></li>
+						<li><a href="gallery.html">画廊</a></li>
+						<li><a href="about_us.html">关于我们</a></li>
+						<li><a href="contacts.html">联系我们</a></li>
 					</ul>
 				</div>
 			</nav>
@@ -97,9 +97,7 @@
 				{% empty %}
 				        
 				{% endfor %}
-				<!--<button class="btn&#45;&#45;warning" data-group="Photography">Photography</button>-->
-				<!--<button class="btn&#45;&#45;warning" data-group="Plugins">Plugins</button>-->
-				<!--<button class="btn&#45;&#45;warning" data-group="Wordpress">Wordpress</button>-->
+
 			</div>
 
 			<div id="grid" class="portfolio-wrapper">
@@ -116,36 +114,6 @@
 			</div>
 		</section>
 
-
-
-
-
-
-
-
-				<!--<figure class="col-md-3" data-groups='["Photography"]'>-->
-					<!--<a href="gallery.html"><img src="/static/img/img2.jpg" alt=""></a>-->
-				<!--</figure>-->
-				<!--<figure class="col-md-3" data-groups='["Plugins"]'>-->
-					<!--<a href="gallery.html"><img src="/static/img/img3.jpg" alt=""></a>-->
-				<!--</figure>-->
-				<!--<figure class="col-md-3" data-groups='["Wordpress"]'>-->
-					<!--<a href="gallery.html"><img src="/static/img/img4.jpg" alt=""></a>-->
-				<!--</figure>-->
-				<!--<figure class="col-md-3" data-groups='["Web Design"]'>-->
-					<!--<a href="gallery.html"><img src="/static/img/img5.jpg" alt=""></a>-->
-				<!--</figure>-->
-				<!--<figure class="col-md-3" data-groups='["Photography"]'>-->
-					<!--<a href="gallery.html"><img src="/static/img/img6.jpg" alt=""></a>-->
-				<!--</figure>-->
-				<!--<figure class="col-md-3" data-groups='["Plugins"]'>-->
-					<!--<a href="gallery.html"><img src="/static/img/img7.jpg" alt=""></a>-->
-				<!--</figure>-->
-				<!--<figure class="col-md-3" data-groups='["Wordpress"]'>-->
-					<!--<a href="gallery.html"><img src="/static/img/img8.jpg" alt=""></a>-->
-				<!--</figure>-->
-
-		<!-- portfolio -->
 		<section id="team">
 			<div class="container">
 				<h2>员工</h2>
@@ -170,50 +138,7 @@
 					{% empty %}
 					        
 					{% endfor %}
-					
-					
-					
-					
 
-					
-					
-					
-					
-					
-					
-					
-					<!--<article class="col-md-4 team-item scroll-animation" data-animation="fadeInUp" data-animation-delay="0s">-->
-						<!--<div class="img">-->
-							<!--<img src="/static/img/img9.jpg" alt="">-->
-						<!--</div>-->
-						<!--<div class="team-text">-->
-							<!--<h4>Nathan Lee</h4>-->
-							<!--<p>Quisque vulputate facilisis quam, a fringilla purus varius at. Aliquam ut sodales quam, imperdiet condimentum elit. Fusce ac pharetra augue. </p>-->
-							<!--<div class="spec">Front-end Developer</div>-->
-							<!--<ul class="social">-->
-								<!--<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>-->
-								<!--<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>-->
-								<!--<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>-->
-								<!--<li><a href="#"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>-->
-							<!--</ul>-->
-						<!--</div>-->
-					<!--</article>-->
-					<!--<article class="col-md-4 team-item scroll-animation" data-animation="fadeInRight" data-animation-delay="0s">-->
-						<!--<div class="img">-->
-							<!--<img src="/static/img/img11.jpg" alt="">-->
-						<!--</div>-->
-						<!--<div class="team-text">-->
-							<!--<h4>Jack Maroon</h4>-->
-							<!--<p>Quisque vulputate facilisis quam, a fringilla purus varius at. Aliquam ut sodales quam, imperdiet condimentum elit. Fusce ac pharetra augue. </p>-->
-							<!--<div class="spec">Back-end Developer</div>-->
-							<!--<ul class="social">-->
-								<!--<li><a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a></li>-->
-								<!--<li><a href=""><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>-->
-								<!--<li><a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a></li>-->
-								<!--<li><a href=""><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>-->
-							<!--</ul>-->
-						<!--</div>-->
-					<!--</article>-->
 				</div>
 			</div>
 		</section>
@@ -270,6 +195,12 @@
 				<a href="blog_inner.html" class="read-more">read more</a>
 			</div>
 		</section>
+		{% for r in   %}
+		        
+		{% empty %}
+		        
+		{% endfor %}
+
 		<section class="index-image index-image-right">
 			<div class="img-left img2"></div>
 			<div class="information-right scroll-animation" data-animation="fadeInLeft" data-animation-delay="0s">
@@ -278,6 +209,7 @@
 				<a href="blog_inner.html" class="read-more">read more</a>
 			</div>
 		</section>
+		
 		<div id="partners" class="scroll-animation" data-animation="fadeInUp" data-animation-delay="0s">
 			<div class="container">
 				<div class="carousel-wrapper">
@@ -306,7 +238,8 @@
 				<div class="contact-form">
 					<h2>联系我们</h2>
 
-					<form action="">
+					<form action="{% url 'server:index' %}" method="post">
+						{% csrf_token %}
 						<div class="row">
 						<div class="col-md-6">
 							<div class="input-block name-form">
@@ -324,11 +257,9 @@
 								<textarea  name="news" placeholder="消息"></textarea>
 							</div>
 						</div>
-						<input type="submit" value='发送'>
+						<input type="submit" value='发送'>{{ info }}
 					</div>
-
-
-					</form>
+				</form>
 
 				</div>
 			</div>

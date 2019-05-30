@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿{% load extend_fun %}
+<!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
@@ -8,11 +9,11 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 		<link rel="shortcut icon" type="image/png" href="favicon.png">
 		<!---<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">--->
-		<link rel="stylesheet" href="../static/css/bootstrap.css" type="text/css" />
-		<link rel="stylesheet" href="../static/css/font-awesome.css" type="text/css" />
-		<link rel="stylesheet" href="../static/css/style.css" type="text/css" />
+		<link rel="stylesheet" href="/static/css/bootstrap.css" type="text/css" />
+		<link rel="stylesheet" href="/static/css/font-awesome.css" type="text/css" />
+		<link rel="stylesheet" href="/static/css/style.css" type="text/css" />
 		<!--[if IE]>
-		<script src="../static/js/html5.js"></script>
+		<script src="/static/js/html5.js"></script>
 		<![endif]-->
 	</head>
 	<body>
@@ -35,11 +36,11 @@
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav menu">
-						<li class="dropdown"><a href="index.html">Home</a></li>
-						<li><a href="blog.html">Blog</a></li>
-						<li><a href="gallery.html">Gallery</a></li>
-						<li><a href="about_us.html">About Us</a></li>
-						<li><a href="contacts.html">Contacts</a></li>
+						<li class="dropdown"><a href="{% url 'server:index' %}">主页</a></li>
+						<li><a href="{% url 'server:blog' %}">博客</a></li>
+						<li><a href="gallery.html">画廊</a></li>
+						<li><a href="about_us.html">关于我们</a></li>
+						<li><a href="contacts.html">联系我们</a></li>
 					</ul>
 				</div>
 			</nav>
@@ -47,139 +48,126 @@
 		<!-- header -->
 		<div class="breadcrumbs-wrapper">
 			<ul class="breadcrumbs">
-				<li><a href="index.html" class="home"><i class="fa fa-home" aria-hidden="true"></i></a></li>
-				<li><a>Blog</a></li>
+				<li><a href="{% url 'server:index' %}" class="home"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+				<li><a>博客</a></li>
 			</ul>
 		</div>
 		<!-- breadcrumbs-wrapper -->
 		<section class="content-wrapper">
 			<div class="container">
 				<div class="title">
-					<h1>Blog</h1>
+					<h1>博客</h1>
 				</div>
 				<div class="row">
 					<aside class="sidebar col-md-4">
-						<h4>Category menu</h4>
+						<h4>分类</h4>
 						<ul class="category-menu">
-							<li><a href="blog.html">News</a></li>
-							<li><a href="blog.html">Tehnology</a></li>
-							<li><a href="blog.html">Corporate</a></li>
-							<li><a href="blog.html">World</a></li>
-							<li><a href="blog.html">Gaming</a></li>
-							<li><a href="blog.html">Software</a></li>
-							<li><a href="blog.html">Article</a></li>
+
+			       {% getcategorys as categorys  %}
+                        {% for category in categorys  %}
+
+                          <li><a href="{% url 'server:category' category.id %}">
+                              {{ category.title }}<span class="post-count">
+                              ({{ category.article_set.count }}篇)</span></a> </li>
+                        {% empty %}
+
+                        {% endfor %}
+
+
 						</ul>
 						<!-- category-menu -->
 						<div class="blog-sidebar">
-							<h4>Recent Posts</h4>
+							<h4>最新文章</h4>
+
+							          <ul>
+                        {% getarchives as archives %}
+                        {% for archive in archives %}
+
+
 							<article class="blog-post-sidebar">
-								<div class="img">
-									<img src="../static/img/img20.jpg" alt="">
-								</div>
-								<a href="blog_inner.html">
-									<h5>Praesent malesuada vehicula ipsum, pharetra blandit</h5>
+								<a href="{% url 'server:archives' archive.year archive.month  %}">
+									<h5>{{ archive.year }} 年 {{ archive.month }} 月</h5>
 								</a>
-								<a href="blog_inner.html" class="read-more">Read more</a>
 							</article>
-							<article class="blog-post-sidebar">
-								<div class="img">
-									<img src="../static/img/img21.jpg" alt="">
-								</div>
-								<a href="blog_inner.html">
-									<h5>Cras bibendum nisl</h5>
-								</a>
-								<p>Mauris consequat porttitor lorem vitae semper.</p>
-								<a href="blog_inner.html" class="read-more">Read more</a>
-							</article>
-							<article class="blog-post-sidebar">
-								<div class="img">
-									<img src="../static/img/img22.jpg" alt="">
-								</div>
-								<a href="blog_inner.html">
-									<h5>Nunc et orci</h5>
-								</a>
-								<p>Mauris consequat porttitor lorem vitae semper.</p>
-								<a href="blog_inner.html" class="read-more">Read more</a>
-							</article>
+
+
+
+
+
+
+                        {% empty %}
+                            <li>没有对象</li>
+                        {% endfor %}
+
+
+                    </ul>
+
+
+
+
+
+
+
 						</div>
 						<!-- blog-sidebar -->
 						<div class="tags">
-							<h4>Tags</h4>
-							<a href="#" class="active">3D</a>
-							<a href="#">Bussiness</a>
-							<a href="#">News</a>
-							<a href="#">Gaming</a>
-							<a href="#">World</a>
-							<a href="#">Article</a>
-							<a href="#">Tehnology</a>
-							<a href="#">Corporate</a>
-							<a href="#">Bussiness</a>
-							<a href="#">News</a>
-							<a href="#">Gaming</a>
-							<a href="#">World</a>
-							<a href="#">Article</a>
-							<a href="#">Tehnology</a>
-							<a href="#">Corporate</a>
+							<h4>标签</h4>
+                        {% gettags as tags %}
+                        {% for tag in tags %}
+                            <a href="{% url 'server:tag' tag.id %}">{{ tag.title }}</a>
+
+                        {% empty %}
+                            <li>没有标签</li>
+                        {% endfor %}
 						</div>
 						<!-- Tags -->
 					</aside>
 					<!-- aside -->
 					<div class="content col-md-8">
-						<article class="blog-item">
+
+
+							{% if page %}
+								{% for r in page.object_list %}
+					        <article class="blog-item">
 							<div class="img">
-								<img src="../static/img/img16.jpg" alt="">
+								<img src="" alt="">
 							</div>
 							<div class="blog-text">
-								<a href="blog_inner.html">
-									<h5>Praesent malesuada vehicula ipsum, pharetra blandit velit porta bibendum.</h5>
+								<a href="{% url 'server:detail' r.id %}">
+									<h5>{{ r.title }}</h5>
 								</a>
-								<p>Mauris consequat porttitor lorem vitae semper. Pellentesque non malesuada orci, auctor venenatis urna. Nam gravida nunc vitae sem posuere, et condimentum lacus finibus. Vestibulum eu turpis nec odio mattis gravida. Nulla placerat, libero id faucibus scelerisque, nisi mi hendrerit tortor</p>
+								<p>{{ r.body|myslice:40 }}.......</p>
 								<div class="bottom-blog clear">
-									<div class="date">Date publication: 14.11.2016</div>
-									<a href="blog_inner.html" class="read-more">Read more</a>
-									<a href="blog_inner.html" class="comment"><i class="fa fa-comment-o" aria-hidden="true"></i> 2 comments</a>
+									<div class="date">{{ r.creat_time }}</div>
+									<a href="{% url 'server:detail' r.id %}" class="read-more">阅读更多</a>
 								</div>
 							</div>
+
+								{% empty %}
+
+								{% endfor %}
+
+							{% else %}
+								<p>现在还没有内容</p>
+
+							{% endif %}
+
 						</article>
-						<article class="blog-item">
-							<div class="img">
-								<img src="../static/img/img17.jpg" alt="">
-							</div>
-							<div class="blog-text">
-								<a href="blog_inner.html">
-									<h5>Cras bibendum nisl dui, eget consequat elit efficitur id. Vivamus varius convallis justo</h5>
-								</a>
-								<p>Mauris consequat porttitor lorem vitae semper. Pellentesque non malesuada orci, auctor venenatis urna. Nam gravida nunc vitae sem posuere, et condimentum lacus finibus. Vestibulum eu turpis nec odio mattis gravida. Nulla placerat, libero id faucibus scelerisque, nisi mi hendrerit tortor</p>
-								<div class="bottom-blog clear">
-									<div class="date">Date publication: 14.11.2016</div>
-									<a href="blog_inner.html" class="read-more">Read more</a>
-									<a href="blog_inner.html" class="comment"><i class="fa fa-comment-o" aria-hidden="true"></i> 2 comments</a>
-								</div>
-							</div>
-						</article>
-						<article class="blog-item">
-							<div class="img">
-								<img src="../static/img/img18.jpg" alt="">
-							</div>
-							<div class="blog-text">
-								<a href="blog_inner.html">
-									<h5>Nunc et orci pharetra, dignissim mauris vel, fermentum leo</h5>
-								</a>
-								<p>Mauris consequat porttitor lorem vitae semper. Pellentesque non malesuada orci, auctor venenatis urna. Nam gravida nunc vitae sem posuere, et condimentum lacus finibus. Vestibulum eu turpis nec odio mattis gravida. Nulla placerat, libero id faucibus scelerisque, nisi mi hendrerit tortor</p>
-								<div class="bottom-blog clear">
-									<div class="date">Date publication: 14.11.2016</div>
-									<a href="blog_inner.html" class="read-more">Read more</a>
-									<a href="blog_inner.html" class="comment"><i class="fa fa-comment-o" aria-hidden="true"></i> 2 comments</a>
-								</div>
-							</div>
-						</article>
-						<ul class="pager">
-							<li><a href="#" class="active">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
+
+					<ul class="pager">
+								{% if page.has_previous %}
+									<li><a href="?page={{page.previous_page_number}}">上页</a></li>
+								{% endif %}
+
+									{% for num in page.paginator.page_range  %}
+										<li><a href="?page={{num}}"  > {{ num }}  </a> </li>
+								{% endfor %}
+									{% if page.has_next %}
+										<li><a href="?page={{page.next_page_number}}">下页</a></li>
+									{% endif %}
 						</ul>
+
+
 					</div>
 				</div>
 			</div>
@@ -234,12 +222,12 @@
 		</footer>
 		<!-- footer -->
 		<!-- scripts -->	
-		<script src="../static/js/lib/jquery.js"></script>
-		<script src="../static/js/lib/bootstrap.min.js"></script>
-		<script src="../static/js/lib/lightbox.min.js"></script>
-		<script src="../static/js/lib/shuffle.js"></script>
-		<script src="../static/js/lib/swiper.min.js"></script>
-		<script src="../static/js/lib/waypoints.min.js"></script>
-		<script src="../static/js/script.js"></script>
+		<script src="/static/js/lib/jquery.js"></script>
+		<script src="/static/js/lib/bootstrap.min.js"></script>
+		<script src="/static/js/lib/lightbox.min.js"></script>
+		<script src="/static/js/lib/shuffle.js"></script>
+		<script src="/static/js/lib/swiper.min.js"></script>
+		<script src="/static/js/lib/waypoints.min.js"></script>
+		<script src="/static/js/script.js"></script>
 	</body>
 </html>

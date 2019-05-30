@@ -1188,6 +1188,7 @@ ul.tabs li.active, ul.tabs li:hover{
     float: right;
 }
 .comment{
+    text-align: center;
     float: right;
     font-size: 13px;
     margin: -1px 17px 0 0;

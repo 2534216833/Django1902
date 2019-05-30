@@ -78,6 +78,7 @@ class Article(models.Model):
 
     auther = models.ForeignKey(User,models.CASCADE)
 
+
     def __str__(self):
         return self.title
 
@@ -85,6 +86,19 @@ class Article(models.Model):
         verbose_name = '文章'
 
         verbose_name_plural = verbose_name
+
+
+
+
+# # 博客图片
+# class Blogimg(models.ManyToOneRel):
+#     #上传图片
+#     img = models.ImageField(upload_to='blogimg',verbose_name='博客图片')
+#     blogimg_id = models.ForeignKey(Staff,on_delete=models.CASCADE)
+#
+#     class Meta():
+#         verbose_name = '博客图片'
+#         verbose_name_plural = verbose_name
 
 
 
