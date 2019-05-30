@@ -75,9 +75,7 @@ def archives(request,year,month):
     paginator = Paginator(articles, 1)
 
     # 传入页码得到一个页面   page包含所有信息
-
     page = paginator.get_page(pagenum)
-
     page.parms = "/archives/%s/%s/" % (year, month)
     return render(request, 'blog.html', {"page": page})
 

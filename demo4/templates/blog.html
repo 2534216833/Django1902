@@ -82,8 +82,6 @@
 							          <ul>
                         {% getarchives as archives %}
                         {% for archive in archives %}
-
-
 							<article class="blog-post-sidebar">
 								<a href="{% url 'server:archives' archive.year archive.month  %}">
 									<h5>{{ archive.year }} 年 {{ archive.month }} 月</h5>
